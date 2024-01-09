@@ -1,0 +1,17 @@
+﻿{
+  "Descriptor": {
+    "UId": "e70c7b66-d601-7dca-0a4d-654672551e68",
+    "Name": "DagmaDev",
+    "Type": 1,
+    "ModifiedOnUtc": "\/Date(1704719130000)\/",
+    "Maintainer": "Customer",
+    "ProjectPath": "Files/DagmaDev.csproj",
+    "DependsOn": [
+      {
+        "UId": "8fbdad89-eda2-187d-df96-aa2ee63e20c3",
+        "Name": "IntegratorMadePackage",
+        "Type": 1
+      }
+    ]
+  }
+}
