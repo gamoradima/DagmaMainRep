@@ -2,6 +2,41 @@ define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, functi
 	return {
 		viewConfigDiff: /**SCHEMA_VIEW_CONFIG_DIFF*/[
 			{
+				"operation": "merge",
+				"name": "CardToggleTabPanel",
+				"values": {
+					"styleType": "default",
+					"bodyBackgroundColor": "primary-contrast-500",
+					"selectedTabTitleColor": "auto",
+					"tabTitleColor": "auto",
+					"underlineSelectedTabColor": "auto",
+					"headerBackgroundColor": "auto"
+				}
+			},
+			{
+				"operation": "merge",
+				"name": "Feed",
+				"values": {
+					"dataSourceName": "PDS",
+					"entitySchemaName": "UsrRealtyFreedomUI"
+				}
+			},
+			{
+				"operation": "merge",
+				"name": "AttachmentList",
+				"values": {
+					"columns": [
+						{
+							"id": "e1ea6540-4f35-4569-b853-e6ed6c067eec",
+							"code": "AttachmentListDS_Name",
+							"caption": "#ResourceString(AttachmentListDS_Name)#",
+							"dataValueType": 28,
+							"width": 200
+						}
+					]
+				}
+			},
+			{
 				"operation": "insert",
 				"name": "UsrName",
 				"values": {
@@ -21,90 +56,148 @@ define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, functi
 				"index": 0
 			},
 			{
-				"operation": "merge",
-				"name": "AttachmentList",
+				"operation": "insert",
+				"name": "UsrPriceUSD",
 				"values": {
-					"type": "crt.FileList",
-					"masterRecordColumnValue": "$Id",
-					"recordColumnName": "RecordId",
 					"layoutConfig": {
-						"colSpan": 2,
+						"column": 1,
+						"row": 2,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrPriceUSD_4yjd6y1",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrPriceUSD_4yjd6y1"
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 1
+			},
+			{
+				"operation": "insert",
+				"name": "UsrArea",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"row": 3,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrArea_uqbesi5",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrArea_uqbesi5"
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 2
+			},
+			{
+				"operation": "insert",
+				"name": "UsrType",
+				"values": {
+					"layoutConfig": {
 						"column": 1,
 						"row": 1,
-						"rowSpan": 6
+						"colSpan": 1,
+						"rowSpan": 1
 					},
-					"items": "$AttachmentList",
-					"primaryColumnName": "AttachmentListDS_Id",
-					"columns": [
-						{
-							"id": "e1ea6540-4f35-4569-b853-e6ed6c067eec",
-							"code": "AttachmentListDS_Name",
-							"caption": "#ResourceString(AttachmentListDS_Name)#",
-							"dataValueType": 28,
-							"width": 200
-						}
-					],
-					"viewType": "gallery",
-					"tileSize": "small"
+					"type": "crt.ComboBox",
+					"label": "$Resources.Strings.PDS_UsrType_um3n25u",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrType_um3n25u",
+					"listActions": [],
+					"showValueAsLink": true,
+					"controlActions": []
 				},
-				"parentName": "AttachmentsTabContainer",
+				"parentName": "GeneralInfoTabContainer",
 				"propertyName": "items",
 				"index": 0
 			},
 			{
-				"operation": "merge",
-				"name": "Feed",
+				"operation": "insert",
+				"name": "addRecord_b125737",
 				"values": {
-					"type": "crt.Feed",
-					"feedType": "Record",
-					"primaryColumnValue": "$Id",
-					"cardState": "$CardState",
-					"dataSourceName": "PDS",
-					"entitySchemaName": "UsrRealtyFreedomUI"
+					"code": "addRecord",
+					"type": "crt.ComboboxSearchTextAction",
+					"icon": "combobox-add-new",
+					"caption": "#ResourceString(addRecord_b125737_caption)#",
+					"clicked": {
+						"request": "crt.CreateRecordFromLookupRequest",
+						"params": {}
+					}
 				},
-				"parentName": "FeedTabContainer",
-				"propertyName": "items",
+				"parentName": "UsrType",
+				"propertyName": "listActions",
 				"index": 0
 			}
 		]/**SCHEMA_VIEW_CONFIG_DIFF*/,
-		viewModelConfig: /**SCHEMA_VIEW_MODEL_CONFIG*/{
-			"attributes": {
-				"UsrName": {
-					"modelConfig": {
-						"path": "PDS.UsrName"
-					}
-				},
-				"Id": {
-					"modelConfig": {
-						"path": "PDS.Id"
-					}
-				}
-			}
-		}/**SCHEMA_VIEW_MODEL_CONFIG*/,
-		modelConfig: /**SCHEMA_MODEL_CONFIG*/{
-			"dataSources": {
-				"PDS": {
-					"type": "crt.EntityDataSource",
-					"config": {
-						"entitySchemaName": "UsrRealtyFreedomUI"
+		viewModelConfigDiff: /**SCHEMA_VIEW_MODEL_CONFIG_DIFF*/[
+			{
+				"operation": "merge",
+				"path": [
+					"attributes"
+				],
+				"values": {
+					"UsrName": {
+						"modelConfig": {
+							"path": "PDS.UsrName"
+						}
 					},
-					"scope": "page"
-				},
-				"AttachmentListDS": {
-					"type": "crt.EntityDataSource",
-					"scope": "viewElement",
-					"config": {
-						"entitySchemaName": "SysFile",
-						"attributes": {
-							"Name": {
-								"path": "Name"
-							}
+					"PDS_UsrPriceUSD_4yjd6y1": {
+						"modelConfig": {
+							"path": "PDS.UsrPriceUSD"
+						}
+					},
+					"PDS_UsrArea_uqbesi5": {
+						"modelConfig": {
+							"path": "PDS.UsrArea"
+						}
+					},
+					"PDS_UsrType_um3n25u": {
+						"modelConfig": {
+							"path": "PDS.UsrType"
 						}
 					}
 				}
 			},
-			"primaryDataSourceName": "PDS"
-		}/**SCHEMA_MODEL_CONFIG*/,
+			{
+				"operation": "merge",
+				"path": [
+					"attributes",
+					"Id",
+					"modelConfig"
+				],
+				"values": {
+					"path": "PDS.Id"
+				}
+			}
+		]/**SCHEMA_VIEW_MODEL_CONFIG_DIFF*/,
+		modelConfigDiff: /**SCHEMA_MODEL_CONFIG_DIFF*/[
+			{
+				"operation": "merge",
+				"path": [],
+				"values": {
+					"primaryDataSourceName": "PDS"
+				}
+			},
+			{
+				"operation": "merge",
+				"path": [
+					"dataSources"
+				],
+				"values": {
+					"PDS": {
+						"type": "crt.EntityDataSource",
+						"config": {
+							"entitySchemaName": "UsrRealtyFreedomUI"
+						},
+						"scope": "page"
+					}
+				}
+			}
+		]/**SCHEMA_MODEL_CONFIG_DIFF*/,
 		handlers: /**SCHEMA_HANDLERS*/[]/**SCHEMA_HANDLERS*/,
 		converters: /**SCHEMA_CONVERTERS*/{}/**SCHEMA_CONVERTERS*/,
 		validators: /**SCHEMA_VALIDATORS*/{}/**SCHEMA_VALIDATORS*/
